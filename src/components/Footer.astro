@@ -4,8 +4,15 @@ const year = new Date().getFullYear();
 
 <footer class="footer">
   <div class="container footer-inner">
-    <span>© {year} Berggrens Elinstallationer AB</span>
-    <span>Org.nr: 559588-9667</span>
+    <div class="footer-brand">
+      <span>© {year} Berggrens Elinstallationer AB</span>
+      <span>Org.nr: 559588-9667</span>
+    </div>
+    <div class="footer-contact">
+      <a href="tel:+46739771070">0739-77 10 70</a>
+      <a href="mailto:daniel@berggrens-el.se">daniel@berggrens-el.se</a>
+      <span>Stockholm, utgångspunkt Vallentuna</span>
+    </div>
   </div>
 </footer>
 
@@ -21,6 +28,38 @@ const year = new Date().getFullYear();
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 16px 32px;
+  }
+
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .footer-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 28px;
+    text-align: right;
+  }
+
+  .footer-contact a {
+    color: rgba(250, 248, 244, 0.75);
+    text-decoration: none;
+  }
+
+  .footer-contact a:hover {
+    color: var(--gold);
+  }
+
+  @media (max-width: 640px) {
+    .footer-inner {
+      flex-direction: column;
+    }
+
+    .footer-contact {
+      text-align: left;
+    }
   }
 </style>
