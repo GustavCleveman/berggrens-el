@@ -1,0 +1,84 @@
+---
+import { getCollection } from 'astro:content';
+import Icon from './Icon.astro';
+
+const services = (await getCollection('services')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+---
+
+<section class="section" id="tjanster">
+  <div class="container">
+    <div class="section-header">
+      <p class="eyebrow" style="justify-content:center">Vad vi gör</p>
+      <h2 class="section-title">Våra tjänster</h2>
+      <p class="section-lede">
+        Från mindre reparationer till kompletta installationer – vi hjälper
+        både privatpersoner och företag med elarbeten som håller.
+      </p>
+    </div>
+    <div class="services-grid">
+      {
+        services.map((service) => (
+          <div class="card">
+            <div class="card-icon">
+              <Icon name={service.data.icon} />
+            </div>
+            <h3>{service.data.title}</h3>
+            <p>{service.data.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+
+  .card {
+    background: var(--paper);
+    padding: 44px 36px;
+    transition: background 0.25s ease;
+  }
+
+  .card:hover {
+    background: var(--white);
+  }
+
+  .card-icon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    color: var(--gold-dark);
+    margin-bottom: 22px;
+  }
+
+  .card-icon :global(.icon) {
+    width: 20px;
+    height: 20px;
+  }
+
+  .card h3 {
+    font-family: var(--font-display);
+    font-size: 1.08rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+
+  .card p {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+  }
+</style>

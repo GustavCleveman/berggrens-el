@@ -1,0 +1,167 @@
+---
+import { Image } from 'astro:assets';
+import logoMark from '../assets/logo-mark.png';
+---
+
+<header class="header">
+  <div class="container header-inner">
+    <a href="#top" class="brand">
+      <Image src={logoMark} alt="" width={102} height={108} class="brand-mark" />
+      <span class="brand-text">Berggrens <span class="brand-el">El</span></span>
+    </a>
+    <nav class="nav">
+      <a href="#tjanster">Tjänster</a>
+      <a href="#om-oss">Om oss</a>
+      <a href="#kontakt">Kontakt</a>
+      <a href="#kontakt" class="btn btn-gold nav-cta">Begär offert</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Öppna meny" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+  <nav class="nav-mobile" id="nav-mobile">
+    <a href="#tjanster">Tjänster</a>
+    <a href="#om-oss">Om oss</a>
+    <a href="#kontakt">Kontakt</a>
+    <a href="#kontakt" class="btn btn-gold">Begär offert</a>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.querySelector('.nav-toggle');
+  const mobileNav = document.getElementById('nav-mobile');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = mobileNav?.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', String(Boolean(isOpen)));
+  });
+
+  mobileNav?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      mobileNav.classList.remove('is-open');
+      toggle?.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(250, 248, 244, 0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 76px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--ink);
+  }
+
+  .brand-mark {
+    height: 32px;
+    width: auto;
+  }
+
+  .brand-text {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  .brand-el {
+    color: var(--gold-dark);
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+  }
+
+  .nav a {
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    transition: color 0.2s;
+  }
+
+  .nav a:hover {
+    color: var(--gold-dark);
+  }
+
+  .nav-cta {
+    padding: 11px 22px;
+    font-size: 0.85rem;
+  }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 34px;
+    height: 34px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .nav-toggle span {
+    display: block;
+    height: 1.5px;
+    background: var(--ink);
+  }
+
+  .nav-mobile {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px 28px 24px;
+    border-top: 1px solid var(--line);
+    background: var(--paper);
+  }
+
+  .nav-mobile a {
+    padding: 12px 0;
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-weight: 500;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-mobile .btn {
+    margin-top: 12px;
+    justify-content: center;
+    border-bottom: none;
+  }
+
+  @media (max-width: 780px) {
+    .nav {
+      display: none;
+    }
+
+    .nav-toggle {
+      display: flex;
+    }
+
+    .nav-mobile.is-open {
+      display: flex;
+    }
+  }
+</style>
