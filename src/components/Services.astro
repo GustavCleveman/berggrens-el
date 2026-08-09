@@ -26,6 +26,7 @@ const services = (await getCollection('services')).sort(
             </div>
             <h3>{service.data.title}</h3>
             <p>{service.data.description}</p>
+            {service.data.note && <p class="card-note">{service.data.note}</p>}
           </div>
         ))
       }
@@ -80,5 +81,13 @@ const services = (await getCollection('services')).sort(
   .card p {
     color: var(--ink-soft);
     font-size: 0.95rem;
+  }
+
+  .card-note {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--line);
+    font-size: 0.82rem;
+    color: var(--gold-dark);
   }
 </style>

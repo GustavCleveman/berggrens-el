@@ -35,6 +35,10 @@
         </div>
       </div>
       <div class="field">
+        <label for="address">Adress, postnummer och ort</label>
+        <input id="address" name="address" type="text" autocomplete="street-address" />
+      </div>
+      <div class="field">
         <label for="message">Meddelande</label>
         <textarea id="message" name="message" rows="6" required></textarea>
       </div>
@@ -76,7 +80,7 @@
       }
     } catch {
       status.textContent =
-        'Något gick fel. Ring oss gärna direkt på 0739-77 10 70 istället.';
+        'Något gick fel. Ring oss gärna direkt på 0708-11 24 68 istället.';
       status.className = 'form-status is-error';
     }
   });
